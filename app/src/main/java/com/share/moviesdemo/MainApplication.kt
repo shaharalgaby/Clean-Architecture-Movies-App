@@ -15,10 +15,9 @@ class MainApplication : Application() {
         super.onCreate()
 
         startKoin {
-            androidLogger(Level.DEBUG)
             androidContext(this@MainApplication)
-            modules(persistenceModule)
             modules(networkModule)
+            modules(persistenceModule)
             modules(repositoryModule)
             modules(viewModelModule)
         }

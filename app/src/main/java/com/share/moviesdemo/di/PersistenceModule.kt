@@ -13,6 +13,8 @@ val persistenceModule = module {
             AppDatabase::class.java,
             androidApplication().getString(R.string.database_name)
         )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     single { get<AppDatabase>().MovieDao() }

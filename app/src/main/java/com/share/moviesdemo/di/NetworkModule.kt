@@ -16,8 +16,8 @@ val networkModule = module {
 
     single {
         Retrofit.Builder()
-            .client(get<OkHttpClient>())
-            .baseUrl("https://api.themoviedb.org/3")
+            .client(get())
+            .baseUrl("https://api.themoviedb.org/3/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

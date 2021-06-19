@@ -30,5 +30,15 @@
             app:layout_constraintBottom_toBottomOf="parent"
             tools:listitem="@layout/fragment_movie_list_item"/>
 
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:gone="@{!vm.isLoading}"
+            app:showToast="@{vm.toastMessage}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="64dp"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -7,9 +7,10 @@ import kotlinx.coroutines.flow.Flow
 class GetTopRatedMoviesUseCase(
     private val listRepository: ListRepository) {
     operator fun invoke(
+        onLoading: () -> Unit,
         onSuccess: () -> Unit,
         onFailure: () -> Unit
     ): Flow<List<Movie>> {
-        return listRepository.loadTopRatedList(onSuccess, onFailure)
+        return listRepository.loadTopRatedList(onLoading, onSuccess, onFailure)
     }
 }

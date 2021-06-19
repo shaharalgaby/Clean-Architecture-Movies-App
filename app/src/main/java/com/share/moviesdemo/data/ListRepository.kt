@@ -12,26 +12,29 @@ class ListRepository constructor(
 ) : Repository {
 
     fun loadTopRatedList(
+        onLoading: () -> Unit,
         onSuccess: () -> Unit,
         onFailure: () -> Unit
     ) = flow {
-        val movieList = movieDao.getTopRated()
-        if(movieList.isNotEmpty()) {
-            emit(movieList)
-            onSuccess()
-        }
+        onLoading()
+        try {
+            val movieList = movieDao.getTopRated()
+            if (movieList.isNotEmpty()) emit(movieList)
 
-        val response = moviesApi.getTopRated(1)
-        if(response?.isSuccessful == true) {
-            val movies = response.body()?.repositories
-            if(movies != null) {
-                movieDao.insertAll(movies)
-                emit(movies)
-                onSuccess()
+            val response = moviesApi.getTopRated(1)
+            if (response?.isSuccessful == true) {
+                val movies = response.body()?.repositories
+                if (movies != null) {
+                    movieDao.insertAll(movies)
+                    emit(movies)
+                    onSuccess()
+                } else {
+                    onFailure()
+                }
             } else {
                 onFailure()
             }
-        } else {
+        } catch (e: Exception) {
             onFailure()
         }
     }.flowOn(Dispatchers.IO)

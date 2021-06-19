@@ -1,19 +1,21 @@
 package com.share.moviesdemo.ui.movie_list
 
 import androidx.lifecycle.*
-import com.share.moviesdemo.data.ListRepository
 import com.share.moviesdemo.data.Movie
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class MovieListViewModel(
-    listRepository: ListRepository
+    getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase
 ) : ViewModel() {
 
     val movieListLiveData: LiveData<List<Movie>> = liveData(viewModelScope.coroutineContext + Dispatchers.IO) {
-        emitSource(listRepository.loadTopRatedList(
-            onSuccess = {},
-            onFailure = {}
+        emitSource(getTopRatedMoviesUseCase(
+            onSuccess = {
+                        //TODO handle success
+            },
+            onFailure = {
+                //TODO handle failure
+            }
         ).asLiveData())
     }
 

@@ -11,7 +11,6 @@ class ListRepository constructor(
     private val movieDao: MovieDao
 ) : Repository {
 
-
     fun loadTopRatedList(
         onSuccess: () -> Unit,
         onFailure: () -> Unit

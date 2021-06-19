@@ -1,10 +1,7 @@
 package com.share.moviesdemo
 
 import android.app.Application
-import com.share.moviesdemo.di.networkModule
-import com.share.moviesdemo.di.persistenceModule
-import com.share.moviesdemo.di.repositoryModule
-import com.share.moviesdemo.di.viewModelModule
+import com.share.moviesdemo.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -20,6 +17,7 @@ class MainApplication : Application() {
             modules(persistenceModule)
             modules(repositoryModule)
             modules(viewModelModule)
+            modules(useCaseModule)
         }
     }
 }

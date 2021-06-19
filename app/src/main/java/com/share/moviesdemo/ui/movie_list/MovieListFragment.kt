@@ -5,13 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.share.moviesdemo.R
 import com.share.moviesdemo.databinding.FragmentMovieListBinding
+import com.share.moviesdemo.ui.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class MovieListFragment : Fragment() {
-
-    private var _binding: FragmentMovieListBinding? = null
-    private val binding get() = _binding!!
+class MovieListFragment : BaseFragment<FragmentMovieListBinding>(R.layout.fragment_movie_list) {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -19,22 +18,10 @@ class MovieListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        _binding = FragmentMovieListBinding.inflate(inflater, container, false).apply {
+        return doBinding {
             lifecycleOwner = viewLifecycleOwner
             vm = getViewModel()
             adapter = MovieListAdapter()
         }
-        return binding.root
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 }

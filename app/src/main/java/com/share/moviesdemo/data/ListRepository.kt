@@ -22,7 +22,7 @@ class ListRepository constructor(
             onSuccess()
         }
 
-        val response = moviesApi.getTopRated()
+        val response = moviesApi.getTopRated(1)
         if(response?.isSuccessful == true) {
             val movies = response.body()?.repositories
             if(movies != null) {

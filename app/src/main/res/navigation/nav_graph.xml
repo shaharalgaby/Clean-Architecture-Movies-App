@@ -10,10 +10,16 @@
         android:label="MovieListFragment" >
         <action
             android:id="@+id/action_movieListFragment_to_movieDetailsFragment"
-            app:destination="@id/movieDetailsFragment" />
+            app:destination="@id/movieDetailsFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/wait_anim"
+            app:popEnterAnim="@anim/wait_anim"
+            app:popExitAnim="@anim/slide_down"
+            />
     </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment"
         android:name="com.share.moviesdemo.ui.movie_details.MovieDetailsFragment"
-        android:label="MovieDetailsFragment" />
+        android:label="MovieDetailsFragment" >
+    </fragment>
 </navigation>

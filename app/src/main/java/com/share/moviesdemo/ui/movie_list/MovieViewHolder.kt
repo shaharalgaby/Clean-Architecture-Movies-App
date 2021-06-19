@@ -1,13 +1,12 @@
 package com.share.moviesdemo.ui.movie_list
 
-import android.util.Log
+import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.share.moviesdemo.R
 import com.share.moviesdemo.data.Movie
 import com.share.moviesdemo.databinding.FragmentMovieListItemBinding
-import kotlin.coroutines.coroutineContext
 
 class MovieViewHolder(
     private val binding: FragmentMovieListItemBinding
@@ -23,5 +22,9 @@ class MovieViewHolder(
     }
 
     override fun onClick(v: View?) {
+        binding.root.findNavController().navigate(
+            R.id.action_movieListFragment_to_movieDetailsFragment,
+            Bundle().also { it.putLong("movie_id", binding.movie?.id?.toLong() ?: 0) }
+        )
     }
 }

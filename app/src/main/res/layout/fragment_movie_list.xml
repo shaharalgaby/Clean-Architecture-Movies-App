@@ -21,7 +21,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:adapter="@{adapter}"
-            app:spanCount="3"
+            app:spanCount="@integer/cols_count"
             adapterMovieList="@{vm.movieListLiveData}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintTop_toTopOf="parent"

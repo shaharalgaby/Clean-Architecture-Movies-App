@@ -9,5 +9,5 @@ val viewModelModule = module {
 
     viewModel { MovieListViewModel(get()) }
 
-    viewModel { MovieDetailsViewModel(get()) }
+    viewModel { parameters -> MovieDetailsViewModel(get(), movieId = parameters.get()) }
 }

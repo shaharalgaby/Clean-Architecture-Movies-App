@@ -1,7 +1,9 @@
 package com.share.moviesdemo.binding
 
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.share.moviesdemo.data.Movie
 import com.share.moviesdemo.ui.movie_list.MovieListAdapter
@@ -12,6 +14,13 @@ fun bindAdapterMoviesList(view: RecyclerView, movies: List<Movie>?) {
     if(view.adapter !is MovieListAdapter) return
     movies?.also { data ->
         (view.adapter as MovieListAdapter).setData(data)
+    }
+}
+
+@BindingAdapter("onNavigationBackClicked")
+fun bindNavigationBackClicked(view: View, i: Int) {
+    view.setOnClickListener { v ->
+        v.findNavController().popBackStack()
     }
 }
 

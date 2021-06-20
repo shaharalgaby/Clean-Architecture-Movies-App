@@ -5,7 +5,7 @@ import android.view.View
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.share.moviesdemo.R
-import com.share.moviesdemo.data.Movie
+import com.share.moviesdemo.data.models.Movie
 import com.share.moviesdemo.databinding.FragmentMovieListItemBinding
 
 class MovieViewHolder(

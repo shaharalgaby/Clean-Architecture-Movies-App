@@ -2,13 +2,15 @@ package com.share.moviesdemo.binding
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.share.moviesdemo.data.Movie
+import com.share.moviesdemo.data.models.Movie
 import com.share.moviesdemo.ui.movie_list.MovieListAdapter
 import com.squareup.picasso.Picasso
+import java.lang.Exception
 
 @BindingAdapter("adapterMovieList")
 fun bindAdapterMoviesList(view: RecyclerView, movies: List<Movie>?) {
@@ -38,6 +40,27 @@ fun bindGone(view: View, shouldBeGone: Boolean?) {
 fun showToast(view: View, msg: String?) {
     if(msg.isNullOrEmpty()) return
     Snackbar.make(view, msg, Snackbar.LENGTH_LONG).show()
+}
+
+@BindingAdapter("setupTextInYearView")
+fun setupTextInYearView(tv: TextView, txt: String?) {
+    try {
+        tv.text = txt?.substring(0,4) ?: ""
+    } catch (e: Exception) { }
+}
+
+@BindingAdapter("setupTextInDurationView")
+fun setupTextInDurationView(tv: TextView, txt: String?) {
+    try {
+        val num = txt?.toInt() ?: return
+        tv.text = "${num/60}h ${num%60}m"
+    } catch (e: Exception) {
+    }
+}
+
+@BindingAdapter("setupTextInGenresView")
+fun setupTextInGenresView(tv: TextView, movie: Movie?) {
+    tv.text = movie?.genres?.map { it?.name }?.toList()?.joinToString() ?: ""
 }
 
 const val IMAGE_URL_POSTFIX = "https://image.tmdb.org/t/p/w500"

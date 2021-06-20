@@ -18,7 +18,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
 
             <androidx.constraintlayout.widget.Guideline
@@ -41,6 +41,13 @@
                 android:layout_height="wrap_content"
                 app:barrierDirection="bottom"
                 app:constraint_referenced_ids="fragment_movie_details_rating_count_tv,fragment_movie_details_poster_iv"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/date_duration_barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="fragment_movie_details_duration_tv,fragment_movie_details_date_tv"/>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
@@ -76,7 +83,7 @@
                 app:layout_constraintDimensionRatio="3:4"
                 app:layout_constraintEnd_toEndOf="@id/guideline_end"
                 app:layout_constraintTop_toBottomOf="@id/fragment_movie_details_backdrop_iv"
-                 />
+                />
 
             <TextView
                 android:id="@+id/fragment_movie_details_title_tv"
@@ -85,6 +92,7 @@
                 android:text="@{vm.movieDetailsLiveData.title}"
                 android:textSize="24sp"
                 android:textStyle="bold"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintVertical_chainStyle="packed"
                 app:layout_constraintEnd_toStartOf="@id/fragment_movie_details_poster_iv"
                 app:layout_constraintHorizontal_bias="0"
@@ -94,27 +102,53 @@
 
             <TextView
                 android:id="@+id/fragment_movie_details_date_tv"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{vm.movieDetailsLiveData.releaseDate}"
-                app:layout_constraintEnd_toStartOf="@+id/fragment_movie_details_poster_iv"
+                android:layout_marginStart="16dp"
+                app:layout_goneMarginStart="0dp"
+                app:setupTextInYearView="@{vm.movieDetailsLiveData.releaseDate}"
+                gone="@{vm.movieDetailsLiveData.releaseDate == null || vm.movieDetailsLiveData.releaseDate.empty}"
                 app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintStart_toEndOf="@id/fragment_movie_details_duration_tv"
                 app:layout_constraintTop_toBottomOf="@+id/fragment_movie_details_title_tv"
-                tools:text="1994-09-23" />
+                tools:text="1994" />
+
+            <TextView
+                android:id="@+id/fragment_movie_details_duration_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{vm.movieDetailsLiveData.runtime}"
+                gone="@{vm.movieDetailsLiveData.runtime == null || vm.movieDetailsLiveData.runtime.empty}"
+                app:setupTextInDurationView="@{vm.movieDetailsLiveData.runtime}"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_movie_details_title_tv"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                tools:text="1h 20m"/>
 
             <TextView
                 android:id="@+id/fragment_movie_details_rating_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
                 android:text="@{vm.movieDetailsLiveData.voteAverage.toString()}"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/fragment_movie_details_rating_iv"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_movie_details_date_tv"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_movie_details_genres_tv"
                 tools:text="7.8" />
+
+            <TextView
+                android:id="@+id/fragment_movie_details_genres_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginEnd="8dp"
+                gone="@{vm.movieDetailsLiveData.genres == null || vm.movieDetailsLiveData.genres.empty}"
+                setupTextInGenresView="@{vm.movieDetailsLiveData}"
+                app:layout_constraintTop_toBottomOf="@id/date_duration_barrier"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintEnd_toStartOf="@id/fragment_movie_details_poster_iv"
+                tools:text="Comedy"/>
 
             <TextView
                 android:id="@+id/fragment_movie_details_rating_10_tv"

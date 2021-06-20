@@ -3,7 +3,7 @@ package com.share.moviesdemo.ui.movie_list
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.share.moviesdemo.data.Movie
+import com.share.moviesdemo.data.models.Movie
 import com.share.moviesdemo.databinding.FragmentMovieListItemBinding
 
 class MovieListAdapter : RecyclerView.Adapter<MovieViewHolder>() {

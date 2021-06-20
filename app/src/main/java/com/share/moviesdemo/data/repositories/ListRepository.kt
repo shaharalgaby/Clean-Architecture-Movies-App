@@ -1,4 +1,4 @@
-package com.share.moviesdemo.data
+package com.share.moviesdemo.data.repositories
 
 import com.share.moviesdemo.data.remote.MoviesApi
 import com.share.moviesdemo.data.room.MovieDao

@@ -1,6 +1,5 @@
-package com.share.moviesdemo.data
+package com.share.moviesdemo.data.models
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -11,6 +10,8 @@ data class Movie(
     var title: String?,
     var popularity: Double?,
     var overview: String?,
+    var runtime: String?,
+    var genres: ArrayList<Genre?>?,
     @SerializedName("release_date") val releaseDate: String?,
     @SerializedName("vote_average") val voteAverage: Double?,
     @SerializedName("vote_count") val voteCount: Int?,

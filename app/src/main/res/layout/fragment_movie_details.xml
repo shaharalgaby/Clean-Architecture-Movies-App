@@ -166,7 +166,8 @@
                 android:id="@+id/fragment_movie_details_rating_count_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text='@{vm.movieDetailsLiveData.voteCount.toString()}'
+                setupTextInVoteCountView="@{vm.movieDetailsLiveData.voteCount}"
+                gone="@{vm.movieDetailsLiveData.voteCount == null}"
                 android:textStyle="bold"
                 android:alpha="0.8"
                 android:textSize="12sp"

@@ -11,6 +11,8 @@ import com.share.moviesdemo.data.models.Movie
 import com.share.moviesdemo.ui.movie_list.MovieListAdapter
 import com.squareup.picasso.Picasso
 import java.lang.Exception
+import java.text.NumberFormat
+import java.util.*
 
 @BindingAdapter("adapterMovieList")
 fun bindAdapterMoviesList(view: RecyclerView, movies: List<Movie>?) {
@@ -54,6 +56,15 @@ fun setupTextInDurationView(tv: TextView, txt: String?) {
     try {
         val num = txt?.toInt() ?: return
         tv.text = "${num/60}h ${num%60}m"
+    } catch (e: Exception) {
+    }
+}
+
+@BindingAdapter("setupTextInVoteCountView")
+fun setupTextInVoteCountView(tv: TextView, _txt: Int?) {
+    try {
+        val txt = _txt ?: 0
+        tv.text = NumberFormat.getNumberInstance(Locale.getDefault()).format(txt)
     } catch (e: Exception) {
     }
 }

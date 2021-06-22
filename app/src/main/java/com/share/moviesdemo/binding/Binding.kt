@@ -7,7 +7,10 @@ import androidx.databinding.BindingAdapter
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.share.moviesdemo.R
 import com.share.moviesdemo.data.models.Movie
+import com.share.moviesdemo.data.models.RequestState
+import com.share.moviesdemo.data.models.State
 import com.share.moviesdemo.ui.movie_list.MovieListAdapter
 import com.squareup.picasso.Picasso
 import java.lang.Exception
@@ -38,10 +41,11 @@ fun bindGone(view: View, shouldBeGone: Boolean?) {
     }
 }
 
-@BindingAdapter("showToast")
-fun showToast(view: View, msg: String?) {
-    if(msg.isNullOrEmpty()) return
-    Snackbar.make(view, msg, Snackbar.LENGTH_LONG).show()
+@BindingAdapter("showErrorSnackbar")
+fun <T> showErrorSnackbar(view: View, request: RequestState<T>?) {
+    if(request?.state != State.ERROR || request.msg.isNullOrEmpty()) return
+    Snackbar.make(view, request.msg ?: view.context.getString(R.string.default_error), Snackbar.LENGTH_SHORT).show()
+    request.msg = ""
 }
 
 @BindingAdapter("setupTextInYearView")

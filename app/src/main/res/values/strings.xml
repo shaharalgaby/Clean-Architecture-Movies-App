@@ -2,4 +2,5 @@
     <string name="app_name">MoviesDemo</string>
     <string name="database_name">movie_db</string>
     <string name="out_of_10">/ 10</string>
+    <string name="default_error">Error occurred</string>
 </resources>
